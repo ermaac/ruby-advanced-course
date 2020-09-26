@@ -3,14 +3,10 @@ GEM
   specs:
     ast (2.4.1)
     diff-lcs (1.4.4)
-    mustermann (1.1.1)
-      ruby2_keywords (~> 0.0.1)
     parallel (1.19.2)
     parser (2.7.1.5)
       ast (~> 2.4.1)
     rack (2.2.3)
-    rack-protection (2.1.0)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rainbow (3.0.0)
@@ -41,13 +37,6 @@ GEM
     rubocop-ast (0.5.1)
       parser (>= 2.7.1.5)
     ruby-progressbar (1.10.1)
-    ruby2_keywords (0.0.2)
-    sinatra (2.1.0)
-      mustermann (~> 1.0)
-      rack (~> 2.2)
-      rack-protection (= 2.1.0)
-      tilt (~> 2.0)
-    tilt (2.0.10)
     unicode-display_width (1.7.0)
 
 PLATFORMS
@@ -57,7 +46,6 @@ DEPENDENCIES
   rack-test (~> 1.1)
   rspec (~> 3.9)
   rubocop (~> 0.92.0)
-  sinatra (~> 2.1)
 
 BUNDLED WITH
    2.1.4

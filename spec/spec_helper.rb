@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ENV['RACK_ENV'] = 'test'
-require './app'
+require './simple_rack_app'
 require 'rspec'
 require 'rack/test'
 
