@@ -1,5 +1,7 @@
-require 'sinatra'
+require 'sinatra/base'
 
-get '/' do
-  'Hello world!'
+class SimpleRackApp < Sinatra::Base
+  get '/' do
+    'Hello world!'
+  end
 end
