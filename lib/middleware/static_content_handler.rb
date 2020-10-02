@@ -19,7 +19,7 @@ module SimpleRackApp
       def static_content_file_path(env)
         resource_name = File.basename(env['PATH_INFO'])
         sanitized_resource_name = sanitize(resource_name)
-        file_path = find_file(sanitized_resource_name)
+        find_file(sanitized_resource_name)
       end
 
       def find_file(sanitized_resource_name)

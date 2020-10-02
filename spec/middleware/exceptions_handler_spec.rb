@@ -4,7 +4,12 @@ require_relative '../spec_helper'
 
 RSpec.describe SimpleRackApp::Middleware::ExceptionsHandler do
   context 'with middleware' do
-    let(:use_middleware) { true }
+    let(:app) do
+      Rack::Builder.new do
+        use SimpleRackApp::Middleware::ExceptionsHandler
+        run SimpleRackApp::App.new
+      end
+    end
 
     describe '404 error' do
       it 'returns response modified by middleware' do

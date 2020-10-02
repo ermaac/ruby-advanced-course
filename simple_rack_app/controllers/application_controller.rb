@@ -13,7 +13,7 @@ module SimpleRackApp
     def call
       send(action)
       self.status = 200
-      self.headers = {'Content-Type' => 'text/plain'}
+      self.headers = { 'Content-Type' => 'text/plain' }
       self.content ||= ['Simple Rack App']
       self
     end

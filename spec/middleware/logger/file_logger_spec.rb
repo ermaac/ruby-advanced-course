@@ -3,13 +3,18 @@
 require_relative '../../spec_helper'
 
 RSpec.describe SimpleRackApp::Middleware::Logger::FileLogger do
-  let(:use_middleware) { true }
+  let(:app) do
+    Rack::Builder.new do
+      use SimpleRackApp::Middleware::Logger::FileLogger
+      run SimpleRackApp::App.new
+    end
+  end
   let(:log_path) { './log/test.log' }
-  let(:time) { DateTime.strptime("2020-10-01 00:00:00", "%F %T").to_time }
+  let(:time) { DateTime.strptime('2020-10-01 00:00:00', '%F %T').to_time }
 
   before do
     allow(Time).to receive(:now).and_return(time)
-    File.delete(log_path) if File.exists?(log_path)
+    File.delete(log_path) if File.exist?(log_path)
   end
 
   describe '#write' do

@@ -23,7 +23,7 @@ module SimpleRackApp
 
       def content_for(status:)
         file_name = "./public/#{status}.html"
-        return File.read(file_name) if File.exists?(file_name)
+        return File.read(file_name) if File.exist?(file_name)
 
         "SimpleRackApp middleware: unknown error with status code: #{status}"
       end

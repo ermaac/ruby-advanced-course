@@ -15,7 +15,7 @@ module SimpleRackApp
       else
         ApplicationController.new.not_found
       end
-    rescue Exception => error
+    rescue StandardError
       ApplicationController.new.internal_error
     end
 

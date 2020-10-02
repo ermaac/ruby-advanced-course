@@ -3,7 +3,12 @@
 require_relative '../spec_helper'
 
 RSpec.describe SimpleRackApp::Middleware::StaticContentHandler do
-  let(:use_middleware) { true }
+  let(:app) do
+    Rack::Builder.new do
+      use SimpleRackApp::Middleware::StaticContentHandler
+      run SimpleRackApp::App.new
+    end
+  end
 
   describe 'about page' do
     context 'when extension is specified' do
@@ -30,7 +35,7 @@ RSpec.describe SimpleRackApp::Middleware::StaticContentHandler do
       end
     end
 
-    context 'when extension is not specified'do
+    context 'when extension is not specified' do
       before do
         expect_any_instance_of(SimpleRackApp::Router).not_to receive(:resolve).and_call_original
       end
