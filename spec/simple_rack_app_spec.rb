@@ -3,8 +3,6 @@
 require_relative './spec_helper'
 
 RSpec.describe SimpleRackApp::App do
-  let(:app) { SimpleRackApp::App.new }
-
   describe 'GET /' do
     it 'returns status code 200 ' do
       get '/'

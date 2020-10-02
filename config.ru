@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require 'rubygems'
-require 'bundler'
-Bundler.require
-require_relative './simple_rack_app'
+require './config/environment'
+
+use SimpleRackApp::Middleware::Logger::FileLogger
 
 run SimpleRackApp::App.new
