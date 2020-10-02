@@ -5,4 +5,4 @@ require 'bundler'
 Bundler.require
 require_relative './simple_rack_app'
 
-run SimpleRackApp.new
+run SimpleRackApp::App.new
