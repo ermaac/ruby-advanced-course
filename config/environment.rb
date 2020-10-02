@@ -3,6 +3,7 @@
 require 'rubygems'
 require 'bundler'
 Bundler.require
-require './simple_rack_app'
+require './simple_rack_app/app'
 require './lib/middleware'
-Dir["./lib/middleware/**/*.rb"].each {|file| require file }
+Dir["./simple_rack_app/**/*.rb"].each { |file| require file }
+Dir["./lib/middleware/**/*.rb"].each { |file| require file }
