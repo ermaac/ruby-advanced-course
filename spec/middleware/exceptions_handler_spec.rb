@@ -10,7 +10,8 @@ RSpec.describe SimpleRackApp::Middleware::ExceptionsHandler do
       it 'returns response modified by middleware' do
         get '/unknown-route'
         expect(last_response.status).to eq(404)
-        expect(last_response.body).to eq('SimpleRackApp middleware: Not Found error')
+        expect(last_response.body).to match('SimpleRackApp middleware')
+        expect(last_response.body).to match('Not Found error')
       end
     end
 
@@ -21,7 +22,8 @@ RSpec.describe SimpleRackApp::Middleware::ExceptionsHandler do
       it 'returns response modified by middleware' do
         get '/'
         expect(last_response.status).to eq(500)
-        expect(last_response.body).to eq('SimpleRackApp middleware: Internal error')
+        expect(last_response.body).to match('SimpleRackApp middleware')
+        expect(last_response.body).to match('Internal error')
       end
     end
   end
