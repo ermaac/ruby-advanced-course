@@ -3,6 +3,7 @@
 require_relative '../../spec_helper'
 
 RSpec.describe SimpleRackApp::Middleware::Logger::FileLogger do
+  let(:use_middleware) { true }
   let(:log_path) { './log/test.log' }
   let(:time) { DateTime.strptime("2020-10-01 00:00:00", "%F %T").to_time }
 

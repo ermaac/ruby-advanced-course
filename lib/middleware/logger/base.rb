@@ -3,9 +3,9 @@
 module SimpleRackApp
   module Middleware
     module Logger
-      FORMAT = %{%s - %s [%s] "%s %s%s%s %s" %d %s %0.4f\n}
-
       class Base
+        FORMAT = %{%s - %s [%s] "%s %s%s%s %s" %d %s %0.4f\n}
+
         def initialize(app)
           @app = app
         end

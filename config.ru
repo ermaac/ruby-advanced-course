@@ -3,5 +3,6 @@
 require './config/environment'
 
 use SimpleRackApp::Middleware::Logger::FileLogger
+use SimpleRackApp::Middleware::ExceptionsHandler
 
 run SimpleRackApp::App.new

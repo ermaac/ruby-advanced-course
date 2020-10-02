@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SimpleRackApp
   class ApplicationController
     attr_reader :name, :action
@@ -19,14 +21,14 @@ module SimpleRackApp
     def not_found
       self.status = 404
       self.headers = {}
-      self.content = ["Nothing found"]
+      self.content = ['Not Found error']
       self
     end
 
     def internal_error
       self.status = 500
       self.headers = {}
-      self.content = ["Internal error"]
+      self.content = ['Internal error']
       self
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SimpleRackApp
   class Router
     attr_reader :routes
@@ -14,8 +16,6 @@ module SimpleRackApp
         ApplicationController.new.not_found
       end
     rescue Exception => error
-      puts error.message
-      puts error.backtrace
       ApplicationController.new.internal_error
     end
 
