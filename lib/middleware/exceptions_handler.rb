@@ -8,15 +8,10 @@ module SimpleRackApp
       end
 
       def call(env)
-        status, headers, body = @app.call(env)
-        case status
-        when 200..299
-          [status, headers, body]
-        when 404
-          [status, headers, [content_for(status: 404)]]
-        when 500
-          [status, headers, [content_for(status: 500)]]
-        end
+        status, headers, = response = @app.call(env)
+        return response unless [404, 500].include?(status)
+
+        [status, headers, [content_for(status: status)]]
       end
 
       private

@@ -2,7 +2,7 @@
 
 require_relative '../../spec_helper'
 
-RSpec.describe SimpleRackApp::Middleware::Logger::FileLogger do
+RSpec.describe SimpleRackApp::Middleware::Logger::CustomLogger do
   let(:app) { ->(_) { [200, {}, ['ok']] } }
   subject { described_class.new(app) }
   let(:log_path) { './log/test.log' }
@@ -19,13 +19,10 @@ RSpec.describe SimpleRackApp::Middleware::Logger::FileLogger do
 
   before do
     allow(Time).to receive(:now).and_return(time)
-    File.delete(log_path) if File.exist?(log_path)
   end
 
-  describe '#write' do
-    it 'writes log message to file' do
-      expect(File).to receive(:write).with(log_path, log_message, mode: 'a')
-      subject.call(env)
-    end
+  it 'logs request' do
+    expect_any_instance_of(::Logger).to receive(:<<).with(log_message)
+    subject.call(env)
   end
 end

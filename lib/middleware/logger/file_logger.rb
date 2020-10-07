@@ -6,7 +6,7 @@ module SimpleRackApp
   module Middleware
     module Logger
       class FileLogger < Base
-        LOG_DIRECTORY = 'log'
+        LOG_DIRECTORY = './log'
 
         def initialize(app)
           super

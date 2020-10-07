@@ -13,34 +13,29 @@ module SimpleRackApp
         def call(env)
           began_at = Time.now.utc
           status, headers, body = @app.call(env)
-          log(env, status, headers, began_at)
+          log(env, status, began_at)
           [status, headers, body]
         end
 
         private
 
-        def log(env, status, header, began_at) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-          length = extract_content_length(header)
+        def log(env, status, began_at) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+          request = Rack::Request.new(env)
 
           message = format(FORMAT,
-                           env['HTTP_X_FORWARDED_FOR'] || env['REMOTE_ADDR'] || '-',
+                           request.ip || '-',
                            env['REMOTE_USER'] || '-',
                            Time.now.strftime('%d/%b/%Y:%H:%M:%S %z'),
-                           env[REQUEST_METHOD],
-                           env[SCRIPT_NAME],
-                           env[PATH_INFO],
-                           env[QUERY_STRING].empty? ? '' : "?#{env[QUERY_STRING]}",
-                           env[SERVER_PROTOCOL],
+                           request.request_method,
+                           request.script_name,
+                           request.path,
+                           request.query_string,
+                           env[Rack::SERVER_PROTOCOL],
                            status.to_s[0..3],
-                           length,
+                           request.content_length,
                            Time.now.utc - began_at)
 
           respond_to?(:write) ? write(message) : self << message
-        end
-
-        def extract_content_length(headers)
-          value = headers[CONTENT_LENGTH]
-          !value || value.to_s == '0' ? '-' : value
         end
       end
     end

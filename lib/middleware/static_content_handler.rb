@@ -27,7 +27,7 @@ module SimpleRackApp
       end
 
       def sanitize(file_name)
-        file_name.gsub(/[^0-9A-Z_.]/i, '_')
+        file_name.gsub('./', '').gsub('../', '')
       end
 
       def static_content(resource_path)
