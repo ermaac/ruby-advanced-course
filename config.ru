@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require 'rubygems'
-require 'bundler'
-Bundler.require
-require_relative './simple_rack_app'
+require './config/boot'
 
-run SimpleRackApp.new
+use SimpleRackApp::Middleware::Logger::CustomLogger
+use SimpleRackApp::Middleware::StaticContentHandler
+use SimpleRackApp::Middleware::ExceptionsHandler
+
+run SimpleRackApp::App.new
